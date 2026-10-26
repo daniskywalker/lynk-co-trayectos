@@ -62,7 +62,9 @@ $('destination').addEventListener('input',()=>{routeEstimateKm=null;routeEstimat
 
 // Enter key confirms forms where appropriate
 refreshPlaceOptions();
-// Presentación inicial breve del logotipo, antes del menú.
-const splash=document.createElement('div');splash.style.cssText='position:fixed;inset:0;z-index:10;background:#101416;display:grid;place-content:center;text-align:center;transition:opacity .65s ease;padding:24px;pointer-events:none';const splashLogo=document.querySelector('.mark').cloneNode(true);splashLogo.style.cssText='width:110px;height:110px;object-fit:contain;margin:0 auto 10px;display:block';splash.appendChild(splashLogo);const splashText=document.createElement('div');splashText.innerHTML='<div style=\"font-size:clamp(25px,5vw,42px);letter-spacing:.12em;font-weight:800\">LYNK & CO</div><div style=\"font-size:clamp(24px,5vw,38px);letter-spacing:.16em;color:#8dd7c4;font-weight:800;margin-top:8px\">TRAYECTOS</div>';splash.appendChild(splashText);document.body.appendChild(splash);setTimeout(()=>{splash.style.opacity='0';setTimeout(()=>splash.remove(),700)},1000);
+// Se omite la capa de bienvenida en esta versión de diagnóstico para evitar que interfiera con los toques en Safari.
+
+// Exponer explícitamente las acciones para los botones en Safari/iPadOS.
+Object.assign(window,{startFlow,showHistory,showPlaces,goHome,confirmRoute,calculateRouteEstimate,togglePause,confirmStop,nextFinish,cancelFinish,savePlace,clearPlaceForm,editTrip,saveEdit,showDetail,editPlace,deletePlace});
 document.addEventListener('keydown',e=>{if(e.key==='Enter'){if(!$('setup').classList.contains('hidden'))confirmRoute();else if(!$('finish').classList.contains('hidden'))nextFinish()}});
 </script></body></html>
